@@ -1,7 +1,17 @@
 import { Button } from "@/components/ui/button";
-import { Brain, BookOpen, User } from "lucide-react";
+import { Brain, BookOpen, User, LogOut } from "lucide-react";
+import { useAuth } from "@/contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
+  const { user, signOut } = useAuth();
+  const navigate = useNavigate();
+
+  const handleSignOut = async () => {
+    await signOut();
+    navigate('/');
+  };
+
   return (
     <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
@@ -19,12 +29,16 @@ const Header = () => {
           <a href="/features" className="text-foreground hover:text-primary transition-smooth">
             Features
           </a>
-          <a href="/resources" className="text-foreground hover:text-primary transition-smooth">
-            Resources
-          </a>
-          <a href="/dashboard" className="text-foreground hover:text-primary transition-smooth">
-            Dashboard
-          </a>
+          {user && (
+            <>
+              <a href="/resources" className="text-foreground hover:text-primary transition-smooth">
+                Resources
+              </a>
+              <a href="/dashboard" className="text-foreground hover:text-primary transition-smooth">
+                Dashboard
+              </a>
+            </>
+          )}
           <a href="/about" className="text-foreground hover:text-primary transition-smooth">
             About
           </a>
@@ -34,17 +48,31 @@ const Header = () => {
         </nav>
 
         <div className="flex items-center gap-3">
-          <Button variant="outline-primary" size="sm" asChild>
-            <a href="/login">
-              <User className="w-4 h-4" />
-              Login
-            </a>
-          </Button>
-          <Button variant="hero" size="sm" asChild>
-            <a href="/register">
-              Get Started
-            </a>
-          </Button>
+          {user ? (
+            <>
+              <span className="text-sm text-muted-foreground hidden md:block">
+                Welcome, {user.user_metadata?.full_name || user.email}
+              </span>
+              <Button variant="outline-primary" size="sm" onClick={handleSignOut}>
+                <LogOut className="w-4 h-4" />
+                Sign Out
+              </Button>
+            </>
+          ) : (
+            <>
+              <Button variant="outline-primary" size="sm" asChild>
+                <a href="/login">
+                  <User className="w-4 h-4" />
+                  Login
+                </a>
+              </Button>
+              <Button variant="hero" size="sm" asChild>
+                <a href="/register">
+                  Get Started
+                </a>
+              </Button>
+            </>
+          )}
         </div>
       </div>
     </header>
