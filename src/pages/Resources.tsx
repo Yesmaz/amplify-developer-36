@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import SmartQuiz from "@/components/SmartQuiz";
 import { 
   Code, 
   Beaker, 
@@ -45,13 +46,23 @@ const Resources = () => {
       difficulty: "Beginner to Expert"
     },
     {
-      title: "Simplilearn Programming - YouTube",
+      title: "Simplilearn Official - YouTube",
       description: "Comprehensive programming tutorials covering latest technologies and frameworks.",
       url: "https://www.youtube.com/@SimplilearnOfficial",
       type: "Video Tutorial",
       rating: 4.7,
       students: "3M+",
       topics: ["React", "Node.js", "Python", "DevOps", "Cloud", "AI/ML"],
+      difficulty: "Intermediate to Advanced"
+    },
+    {
+      title: "Appliso Generative AI Course",
+      description: "Comprehensive course on Generative AI, covering fundamentals to advanced applications.",
+      url: "https://training.appliso.com/course/view.php?id=16",
+      type: "Professional Course",
+      rating: 4.8,
+      students: "10K+",
+      topics: ["Generative AI", "Machine Learning", "Deep Learning", "AI Applications"],
       difficulty: "Intermediate to Advanced"
     },
     {
@@ -211,10 +222,11 @@ const Resources = () => {
         <div className="container mx-auto px-4">
           <Tabs defaultValue="programming" className="space-y-8">
             <div className="flex justify-center">
-              <TabsList className="grid w-full max-w-md grid-cols-3">
+              <TabsList className="grid w-full max-w-2xl grid-cols-4">
                 <TabsTrigger value="programming">Programming</TabsTrigger>
                 <TabsTrigger value="science">Science</TabsTrigger>
-                <TabsTrigger value="upload">File Upload</TabsTrigger>
+                <TabsTrigger value="quiz">AI Quiz</TabsTrigger>
+                <TabsTrigger value="upload">Upload</TabsTrigger>
               </TabsList>
             </div>
 
@@ -303,6 +315,21 @@ const Resources = () => {
                     </Card>
                   ))}
                 </div>
+              </div>
+            </TabsContent>
+
+            {/* AI Quiz Tab */}
+            <TabsContent value="quiz" className="space-y-8">
+              <div className="text-center mb-12">
+                <Badge variant="secondary" className="mb-4">AI-Powered Learning</Badge>
+                <h2 className="text-4xl font-bold mb-6">Smart Quiz Generator</h2>
+                <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+                  Generate personalized quizzes tailored to your learning style, level, and subject preferences using advanced AI.
+                </p>
+              </div>
+              
+              <div className="max-w-4xl mx-auto">
+                <SmartQuiz />
               </div>
             </TabsContent>
 
