@@ -219,8 +219,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🔗 Links
 
-- **Live Demo**: [https://studyai-demo.vercel.app](https://studyai-demo.vercel.app)
-- **GitHub Repository: https://github.com/Yesmaz/amplify-developer         
+- **Live Demo**: (https://musical-engine-g45w4gwqpvvg2v69x-8080.app.github.dev/login)   
+- **GitHub Repository: https://github.dev/Yesmaz/amplify-developer-36            
 
 ---
 
